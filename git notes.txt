@@ -1,0 +1,32 @@
+if any content are added in tracked file(after commited files) the we need to add them into again into staging area and then again need to commit it.
+also if dont want to follo git add anf then git committ then we can use below command for tracked files, let say suppose if make any changed in the file 
+then we can use below command directly
+git commit -a -m "file f2.txt has been modified"
+
+HEAD means the last/  latest commit
+
+git log files are in ./git/objects directory in encrypted format and should not be modified
+the first 2 letters of log are the name of log file
+
+we can add new file in the last (HEAD) existing commit log and 
+suppose we have existing log and we need to add new file (temp.txt) in same commit log 
+$ git log
+commit 182398531c36d154819388f6da9a346362df9ebe (HEAD -> main)
+Author: Prashant mhamunkar <prashantmhamunkar29@gmail.com>
+Date:   Tue May 27 08:55:01 2025 +0530
+
+    file f2.txt has been modified
+so first # git add .    this will take temp.txt to staging the area
+
+# git commit --amend   after this command, we need add or modified existing comment and save the file in VI editor.
+# git status
+# git log
+Prashant@Prashant-PC MINGW64 ~/Documents/lenovolaptoplocalrepo (main)
+$ git log
+commit a90013a07f7bef86907e6b7e95b1a2e1bc61c97b (HEAD -> main)
+Author: Prashant mhamunkar <prashantmhamunkar29@gmail.com>
+Date:   Tue May 27 08:55:01 2025 +0530
+
+    file f2.txt and temp.txt as been modified
+
+
