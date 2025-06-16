@@ -291,6 +291,63 @@ git stash pop             # apply and remove the stash
 git tag v1.0              # create tag
 git push origin v1.0      # push tag
 
+git init 	initializes a new Git repository in your current directory. It creates a hidden .git folder that tracks all changes.
+git status	shows which files are staged, unstaged, and untracked.
+
+check commit history
+git log
+git log --oneline --graph --all
+
+difference between git pull and git fetch
+| Command     | Description                                                                                                    |
+| ----------- | -------------------------------------------------------------------------------------------------------------- |
+| `git fetch` | Downloads changes from the remote repository, but does **not** merge them. You review changes before applying. |
+| `git pull`  | Combines `git fetch` and `git merge` in one step. It **downloads and merges** changes automatically.           |
+
+git fetch origin
+git merge origin/main
+# vs
+git pull origin main
+
+
+What is a branch in Git? How do you create, switch, and delete a branch?
+Answer:
+A branch is a lightweight, movable pointer to a commit. It allows isolated development without affecting the main codebase.
+
+Create a branch: git branch feature-xyz
+
+Switch to branch: git checkout feature-xyz or git switch feature-xyz
+
+Create & switch: git checkout -b feature-xyz
+
+Delete a branch:
+
+Local: git branch -d feature-xyz
+
+Remote: git push origin --delete feature-xyz
+
+Explain how merging works in Git. What is a merge conflict and how do you resolve it?
+Answer:
+Merging integrates changes from one branch into another (usually into main or develop).
+
+git checkout main
+git merge feature-branch
+Merge Conflict occurs when changes in both branches affect the same lines.
+
+To resolve:
+
+Open conflicted file
+
+Manually edit to keep desired changes
+
+Mark as resolved:
+
+git add conflicted_file
+git commit
+
+revert a commit that has already been pushed
+git revert <commit-hash> or Commit ID
+
 
 
 
