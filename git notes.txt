@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 if any content are added in tracked file(after commited files) the we need to add them into again into staging area and then again need to commit it.
 also if dont want to follo git add anf then git committ then we can use below command for tracked files, let say suppose if make any changed in the file 
 then we can use below command directly
@@ -96,3 +97,117 @@ git log --author="Prashant-M" 		get commits of particular user
 git log --grep="modified"		find keyword from from commit message
  
 
+=======
+if any content are added in tracked file(after commited files) the we need to add them into again into staging area and then again need to commit it.
+also if dont want to follo git add anf then git committ then we can use below command for tracked files, let say suppose if make any changed in the file 
+then we can use below command directly
+git commit -a -m "file f2.txt has been modified"
+
+HEAD means the last/  latest commit
+
+git log files are in ./git/objects directory in encrypted format and should not be modified
+the first 2 letters of log are the name of log file
+
+we can add new file in the last (HEAD) existing commit log and 
+suppose we have existing log and we need to add new file (temp.txt) in same commit log 
+$ git log
+commit 182398531c36d154819388f6da9a346362df9ebe (HEAD -> main)
+Author: Prashant mhamunkar <prashantmhamunkar29@gmail.com>
+Date:   Tue May 27 08:55:01 2025 +0530
+
+    file f2.txt has been modified
+so first # git add .    this will take temp.txt to staging the area
+
+# git commit --amend   after this command, we need add or modified existing comment and save the file in VI editor.
+# git status
+# git log
+Prashant@Prashant-PC MINGW64 ~/Documents/lenovolaptoplocalrepo (main)
+$ git log
+commit a90013a07f7bef86907e6b7e95b1a2e1bc61c97b (HEAD -> main)
+Author: Prashant mhamunkar <prashantmhamunkar29@gmail.com>
+Date:   Tue May 27 08:55:01 2025 +0530
+
+    file f2.txt and temp.txt as been modified
+
+
+Scenario 2 
+suppose we have new file called temp123.txt and we have to add this file in the last commit object but dont want to comment then
+touch temp123.txt
+git add .
+git commit --amend --no-edit 		this will add new file into the last commit object without adding comment or edit.
+git log
+
+add sign or signd off userful when manage review file or code and sign after review
+touch sample.txt
+git add .
+git commit -s -m "task done"
+git log
+commit 179e88df152a31bc0d077b2fa93ac396548294c1 (HEAD -> main)
+Author: Prashant mhamunkar <prashantmhamunkar29@gmail.com>
+Date:   Tue May 27 10:04:41 2025 +0530
+
+    review done
+
+    Signed-off-by: Prashant mhamunkar <prashantmhamunkar29@gmail.com>
+
+how perform empty commit 
+use:-  it useful while working with CICD pipe line to triger empty commit
+       for empty commit no need to create file ot adding file in staging area
+git commit --allow-empty "write any message"
+
+
+git Log
+git log          most of the time being used
+git log -n 2 	showing last 2 commits
+git log -n 3	showing last 3 commits
+
+git log --pretty=short  	it will show only commit ID and commit message, not showing date and author 
+git log --pretty=full   	it will show only commit ID, commit message, author and who done the commit
+git log --pretty=fuller		it wil show Commit ID, message, author, author date, commit done by and commit date
+git log --stat			get the git log with summary of changes	
+
+git log -p 			it will show the changes made into the file for each commit  	
+
+git log --pretty=oneline	it will show result in one line
+git log --pretty=format:"%h"		it will show the hash values,( it will show only commit ID first 7 characters)
+$ git log --pretty=format:"%h"
+cc38d35
+179e88d
+
+git log --pretty=format:"%h %s"		it will show the commit ID, message in one line (short)
+$ git log --pretty=format:"%h %s"
+cc38d35 adding git learning Notes file
+179e88d review done
+f21de78 file f2.txt and temp.txt as been modified
+4ca2d33 file f1.txt Added first comment
+
+$ git log --pretty=format:"%h %s %an %ae"		It will show the commit ID, message, author name, author email (short)
+cc38d35 adding git learning Notes file Prashant mhamunkar prashantmhamunkar29@gmail.com
+179e88d review done Prashant mhamunkar prashantmhamunkar29@gmail.com
+f21de78 file f2.txt and temp.txt as been modified Prashant mhamunkar prashantmhamunkar29@gmail.com
+4ca2d33 file f1.txt Added first comment Prashant mhamunkar prashantmhamunkar29@gmail.com
+1599308 adding demo123.txt file Prashant mhamunkar prashantmhamunkar29@gmail.com
+
+git log --since="1 week ago"	show last one week commits
+git log --since="1 day ago"
+git log --since="2 days ago"
+git log --since="2 months ago"
+git log --since="2025-01-15" until="2025-12-15"  show commit result from 15-jan-2025 to 15-dec-2025
+git log --author="Prashant-M" 		get commits of particular user
+git log --grep="modified"		find keyword from from commit message
+
+
+git diff 		show changes before adding to staging
+git diff --staged 	show changes after adding to staging or
+git diff --cached	show changes after adding to staging
+git show 98311a7b6a6c988ee8bb5594d774ce6971d8093c:index.html		check the previous version of file using commit ID
+git checkout 98311a7b6a6c988ee8bb5594d774ce6971d8093c -- index.html	to get the particular version of file using commit ID
+git checkout branchname (master/main/devp) -- *				to get the latest version of file using branch name 
+git restore . or filename (. Means all files)				suppose if make any changes any or many files and you want the last or previous working version of file as it is.  
+
+To restore the file or changes to previous version when we make changes and added the file in staging area
+git restore --staged . or filename 				to bring the file or all file in working directory from staging area
+git restore .							to restore file to previous version
+
+git branch -M main						rename or move branch from current branch to main branch
+>>>>>>> 190742476687c6bd82f89489c42c2dbaa81545cb
