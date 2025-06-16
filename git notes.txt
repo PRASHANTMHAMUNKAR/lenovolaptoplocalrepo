@@ -210,4 +210,65 @@ git restore --staged . or filename 				to bring the file or all file in working 
 git restore .							to restore file to previous version
 
 git branch -M main						rename or move branch from current branch to main branch
+git branch	List/create branches			git branch dev
+git checkout	Switch branches or create and switch	git checkout -b new-feature
+git merge	Merge one branch into another		git merge new-feature
+
+why another branch is require in git?
+A branch is like a separate workspace where you can make changes without affecting the main code (usually the main or master branch).
+
+Safe Feature Development  		Isolated work without affecting main code
+Team Collaboration			Each person works independently
+Bug Fixes Without Delay			Fix and test safely
+Experiment Freely			Try ideas without breaking anything		
+Clean History and Code Reviews		Easy to review and merge changes
+
+main 			--> main branch
+ └─── Feature: login-page
+ └─── Bugfix: fix-footer
+ └─── Feature: dark-mode
+
+difference between 
+git pull origin main 	and 	git pull
+git push origin main 	and 	git push
+
+Command	Meaning
+git pull origin main	Pulls from the main branch of the origin remote explicitly
+git pull		Pulls from the default remote and branch (usually origin/main)
+
+Command	Meaning
+git push origin main	Pushes your local main branch to the main branch of origin
+git push		Pushes your current branch to its default upstream branch
+
+git push -u origin feature-x 		This pushes your local branch named feature-x to the remote called origin, and it also sets up tracking so you can use simple git push or git pull commands in the future.
+-u or --set-upstream			Sets the remote branch as the default upstream for your local branch, 
+					Link this local branch to the remote branch you’re pushing to, so Git remembers it for future pulls/pushes
+Without -u
+git push origin feature-x
+git pull origin feature-x
+
+With -u    only need to do it once
+git push -u origin feature-x
+
+why use origin?  --> Instead of long URLs, you can type origin
+git clone https://github.com/user/myproject.git
+Git automatically sets:
+origin = https://github.com/user/myproject.git
+
+Command	What it does
+git push origin main	Pushes your main branch to GitHub (origin)
+git pull origin main	Pulls latest changes from GitHub's main branch
+git clone <url>		Automatically sets remote name to origin
+
+git clone https://github.com/yourname/project.git
+cd project
+git remote -v
+origin  https://github.com/yourname/project.git (fetch)
+origin  https://github.com/yourname/project.git (push)
+
+
+
+		
+
+
 >>>>>>> 190742476687c6bd82f89489c42c2dbaa81545cb
