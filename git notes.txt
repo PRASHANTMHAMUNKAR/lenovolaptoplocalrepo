@@ -1,3 +1,103 @@
+<<<<<<< HEAD
+if any content are added in tracked file(after commited files) the we need to add them into again into staging area and then again need to commit it.
+also if dont want to follo git add anf then git committ then we can use below command for tracked files, let say suppose if make any changed in the file 
+then we can use below command directly
+git commit -a -m "file f2.txt has been modified"
+
+HEAD means the last/  latest commit
+
+git log files are in ./git/objects directory in encrypted format and should not be modified
+the first 2 letters of log are the name of log file
+
+we can add new file in the last (HEAD) existing commit log and 
+suppose we have existing log and we need to add new file (temp.txt) in same commit log 
+$ git log
+commit 182398531c36d154819388f6da9a346362df9ebe (HEAD -> main)
+Author: Prashant mhamunkar <prashantmhamunkar29@gmail.com>
+Date:   Tue May 27 08:55:01 2025 +0530
+
+    file f2.txt has been modified
+so first # git add .    this will take temp.txt to staging the area
+
+# git commit --amend   after this command, we need add or modified existing comment and save the file in VI editor.
+# git status
+# git log
+Prashant@Prashant-PC MINGW64 ~/Documents/lenovolaptoplocalrepo (main)
+$ git log
+commit a90013a07f7bef86907e6b7e95b1a2e1bc61c97b (HEAD -> main)
+Author: Prashant mhamunkar <prashantmhamunkar29@gmail.com>
+Date:   Tue May 27 08:55:01 2025 +0530
+
+    file f2.txt and temp.txt as been modified
+
+
+Scenario 2 
+suppose we have new file called temp123.txt and we have to add this file in the last commit object but dont want to comment then
+touch temp123.txt
+git add .
+git commit --amend --no-edit 		this will add new file into the last commit object without adding comment or edit.
+git log
+
+add sign or signd off userful when manage review file or code and sign after review
+touch sample.txt
+git add .
+git commit -s -m "task done"
+git log
+commit 179e88df152a31bc0d077b2fa93ac396548294c1 (HEAD -> main)
+Author: Prashant mhamunkar <prashantmhamunkar29@gmail.com>
+Date:   Tue May 27 10:04:41 2025 +0530
+
+    review done
+
+    Signed-off-by: Prashant mhamunkar <prashantmhamunkar29@gmail.com>
+
+how perform empty commit 
+use:-  it useful while working with CICD pipe line to triger empty commit
+       for empty commit no need to create file ot adding file in staging area
+git commit --allow-empty "write any message"
+
+
+git Log
+git log          most of the time being used
+git log -n 2 	showing last 2 commits
+git log -n 3	showing last 3 commits
+
+git log --pretty=short  	it will show only commit ID and commit message, not showing date and auther 
+git log --pretty=full   	it will show only commit ID, commit message, auther and who done the commit
+git log --pretty=fuller		it wil show Commit ID, message, auther, auther date, commit done by and commit date
+
+git log -p 			it will show the changes made into the file for each commit  	
+
+git log --pretty=oneline	it will show result in one line
+git log --pretty=format:"%h"		it will show the hash values,( it will show only commit ID first 7 characters)
+$ git log --pretty=format:"%h"
+cc38d35
+179e88d
+
+git log --pretty=format:"%h %s"		it will show the commit ID, message in one line (short)
+$ git log --pretty=format:"%h %s"
+cc38d35 adding git learning Notes file
+179e88d review done
+f21de78 file f2.txt and temp.txt as been modified
+4ca2d33 file f1.txt Added first comment
+
+$ git log --pretty=format:"%h %s %an %ae"		It will show the commit ID, message, author name, author email (short)
+cc38d35 adding git learning Notes file Prashant mhamunkar prashantmhamunkar29@gmail.com
+179e88d review done Prashant mhamunkar prashantmhamunkar29@gmail.com
+f21de78 file f2.txt and temp.txt as been modified Prashant mhamunkar prashantmhamunkar29@gmail.com
+4ca2d33 file f1.txt Added first comment Prashant mhamunkar prashantmhamunkar29@gmail.com
+1599308 adding demo123.txt file Prashant mhamunkar prashantmhamunkar29@gmail.com
+
+git log --since="1 week ago"	show last one week commits
+git log --since="1 day ago"
+git log --since="2 days ago"
+git log --since="2 months ago"
+git log --since="2025-01-15" until="2025-12-15"  show commit result from 15-jan-2025 to 15-dec-2025
+git log --author="Prashant-M" 		get commits of particular user
+git log --grep="modified"		find keyword from from commit message
+ 
+
+=======
 if any content are added in tracked file(after commited files) the we need to add them into again into staging area and then again need to commit it.
 also if dont want to follo git add anf then git committ then we can use below command for tracked files, let say suppose if make any changed in the file 
 then we can use below command directly
@@ -110,3 +210,148 @@ git restore --staged . or filename 				to bring the file or all file in working 
 git restore .							to restore file to previous version
 
 git branch -M main						rename or move branch from current branch to main branch
+git branch	List/create branches			git branch dev
+git checkout	Switch branches or create and switch	git checkout -b new-feature
+git merge	Merge one branch into another		git merge new-feature
+
+why another branch is require in git?
+A branch is like a separate workspace where you can make changes without affecting the main code (usually the main or master branch).
+
+Safe Feature Development  		Isolated work without affecting main code
+Team Collaboration			Each person works independently
+Bug Fixes Without Delay			Fix and test safely
+Experiment Freely			Try ideas without breaking anything		
+Clean History and Code Reviews		Easy to review and merge changes
+
+main 			--> main branch
+ └─── Feature: login-page
+ └─── Bugfix: fix-footer
+ └─── Feature: dark-mode
+
+difference between 
+git pull origin main 	and 	git pull
+git push origin main 	and 	git push
+
+Command	Meaning
+git pull origin main	Pulls from the main branch of the origin remote explicitly
+git pull		Pulls from the default remote and branch (usually origin/main)
+
+Command	Meaning
+git push origin main	Pushes your local main branch to the main branch of origin
+git push		Pushes your current branch to its default upstream branch
+
+git push -u origin feature-x 		This pushes your local branch named feature-x to the remote called origin, and it also sets up tracking so you can use simple git push or git pull commands in the future.
+-u or --set-upstream			Sets the remote branch as the default upstream for your local branch, 
+					Link this local branch to the remote branch you’re pushing to, so Git remembers it for future pulls/pushes
+Without -u
+git push origin feature-x
+git pull origin feature-x
+
+With -u    only need to do it once
+git push -u origin feature-x
+
+why use origin?  --> Instead of long URLs, you can type origin
+git clone https://github.com/user/myproject.git
+Git automatically sets:
+origin = https://github.com/user/myproject.git
+
+Command	What it does
+git push origin main	Pushes your main branch to GitHub (origin)
+git pull origin main	Pulls latest changes from GitHub's main branch
+git clone <url>		Automatically sets remote name to origin
+
+git clone https://github.com/yourname/project.git
+cd project
+git remote -v
+origin  https://github.com/yourname/project.git (fetch)
+origin  https://github.com/yourname/project.git (push)
+
+Add a remote to a local repo
+git remote add origin https://github.com/user/repo.git
+
+git log --oneline --graph      # visualize branches
+git checkout -b feature/login      # create and switch to branch
+git checkout main
+git merge feature/login            # merge into main
+
+4. HEAD, Stash, Tags
+HEAD: pointer to the current commit
+Stash: temporarily save work
+Tags: mark a specific commit (e.g., v1.0)
+
+# HEAD
+git show HEAD
+git reset --hard HEAD~1   # move back 1 commit
+
+# Stash
+git stash                 # save current changes
+git stash pop             # apply and remove the stash
+
+# Tag
+git tag v1.0              # create tag
+git push origin v1.0      # push tag
+
+git init 	initializes a new Git repository in your current directory. It creates a hidden .git folder that tracks all changes.
+git status	shows which files are staged, unstaged, and untracked.
+
+check commit history
+git log
+git log --oneline --graph --all
+
+difference between git pull and git fetch
+| Command     | Description                                                                                                    |
+| ----------- | -------------------------------------------------------------------------------------------------------------- |
+| `git fetch` | Downloads changes from the remote repository, but does **not** merge them. You review changes before applying. |
+| `git pull`  | Combines `git fetch` and `git merge` in one step. It **downloads and merges** changes automatically.           |
+
+git fetch origin
+git merge origin/main
+# vs
+git pull origin main
+
+
+What is a branch in Git? How do you create, switch, and delete a branch?
+Answer:
+A branch is a lightweight, movable pointer to a commit. It allows isolated development without affecting the main codebase.
+
+Create a branch: git branch feature-xyz
+
+Switch to branch: git checkout feature-xyz or git switch feature-xyz
+
+Create & switch: git checkout -b feature-xyz
+
+Delete a branch:
+
+Local: git branch -d feature-xyz
+
+Remote: git push origin --delete feature-xyz
+
+Explain how merging works in Git. What is a merge conflict and how do you resolve it?
+Answer:
+Merging integrates changes from one branch into another (usually into main or develop).
+
+git checkout main
+git merge feature-branch
+Merge Conflict occurs when changes in both branches affect the same lines.
+
+To resolve:
+
+Open conflicted file
+
+Manually edit to keep desired changes
+
+Mark as resolved:
+
+git add conflicted_file
+git commit
+
+revert a commit that has already been pushed
+git revert <commit-hash> or Commit ID
+
+
+
+
+		
+
+
+>>>>>>> 190742476687c6bd82f89489c42c2dbaa81545cb
