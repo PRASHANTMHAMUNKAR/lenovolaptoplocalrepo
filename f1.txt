@@ -1,2 +1,9 @@
+<<<<<<< HEAD
 this is india
 this is mumbai
+=======
+This is ths sample file
+hello word
+Hello mumbai
+>>>>>>> 24a8a3171813019d20199900daa4fc1fd128d466
+hello India
